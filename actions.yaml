@@ -1,0 +1,15 @@
+name: Check app version tag
+description: Fails if the given version tag already exists in the repository
+author: gi-org-pl
+
+inputs:
+  version:
+    description: Version tag to check (e.g. 1.0.0)
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Check if image version is available
+      shell: sh
+      run: ${{ github.action_path }}/check-version.sh ${{ inputs.version }}
